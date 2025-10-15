@@ -1,11 +1,13 @@
 // 참고용 코멘트
-// 1. 원래 코드 작성 시 import 문은 모두 상단에 모아 적는 것이 맞지만, 
-//    작업 구분을 위해서 임의로 중간 중간에 삽입하였습니다.
-// 2. 모든 기능은 해당 페이지에서 끝나는 것이 아니라 html과 연동되어 사용 된다는 가정으로 하였기에,
-//    각 데이터는 변수에 담아 사용 하도록 작업하였습니다. 
+// 모든 기능은 해당 페이지에서 끝나는 것이 아니라 html과 연동되어 사용 된다는 가정으로 하였기에,
+// 각 데이터는 변수에 담아 사용 하도록 작업하였습니다. 
 
 import Article from "./class/Article.js";
 import ArticleService from "./api/articleService.js";
+
+import Product from "./class/Product.js";
+import ElectronicProduct from "./class/ElectronicProduct.js";
+import ProductService from "./api/productService.js";
 
 // class Article test 
 const data1 = [ "두번쨰 스프린트 미션 V", "증말~ 어렵다~ ㅋㅋㅋ", "JS",];
@@ -56,10 +58,6 @@ async function testArticle(){
 
 testArticle();
 
-
-import Product from "./class/Product.js";
-import ElectronicProduct from "./class/ElectronicProduct.js";
-import ProductService from "./api/productService.js";
 
 // class Product / ElectronicProduct test 
 const data2 = [ "여행용 티슈", "가성비 캡숑짱b", 100000, "", "http://sample.jpg"];
@@ -114,7 +112,8 @@ async function testProduct(){
 
 testProduct();
 
-// ++ 추가 작업 ++
+
+// +++++ 추가 작업 +++++
 import ArticleServiceAxios from "./api/articleSevice_axios.js";
 
 // class ArticleServiceAxios test
