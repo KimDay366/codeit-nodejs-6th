@@ -15,23 +15,25 @@ export default class ArticleServiceAxios{
 
     async getArticleListAxios(queryParams){
 
-        // console.log(queryParams);
-
+        // 에러 처리 - page
         if( typeof(queryParams.page) !== "number" || queryParams.page < 1 ){
             throw new Error("page에 숫자를 입력 해 주시기 바랍니다");
             return;
         }
 
+        // 에러 처리 - page size
         if( typeof(queryParams.pageSize) !== "number" || queryParams.pageSize < 1 ){
             throw new Error("pageSize에 숫자를 입력 해 주시기 바랍니다");
             return;
         }
-
+        
+        // keyword가 있는 경우 에러처리 
         if(queryParams.keyword && !queryParams.keyword.trim()){
             throw new Error("올바른 키워드를 입력 해 주시기 바랍니다.");
             return;
         }
 
+        // 데이터 통신 영역
         try{
             const res = await instance.get('articles', {
                 params : {
@@ -57,12 +59,14 @@ export default class ArticleServiceAxios{
 
     async getArticleAxios(id){
 
+        // 에러처리 - id
         if(!id || typeof(id) !== "number"|| id < 1){
             // id 숫자 크기 제한은 규정을 알지 못해 1보다 작은 수는 사용 불가하도록 작성하였습니다.
             throw new Error("올바른 숫자를 입력 해 주시기 바랍니다");
             return;
         }
 
+        // 데이터 통신 영역
         try{
 
             const res = await instance.get(`articles/${id}`);
@@ -89,12 +93,14 @@ export default class ArticleServiceAxios{
 
     async createArticleAxios(servayData){
 
+        // 에러처리 - title, content
         // 타이틀과 컨텐츠 중 값이 없음이 발생하면 메서드 종료
         if(!servayData.title?.trim() || !servayData.content?.trim() ) {
             throw new Error("data 입력을 확인 해 주세요");
             return;
         }// image 값이 없는 경우 서버에서 걸러내므로 생략
 
+        // 데이터 통신 영역
         try{
             const res = await instance.post('articles',servayData);
 
@@ -106,9 +112,6 @@ export default class ArticleServiceAxios{
     }
 
 
-    // GPT 도움 받은 부분 
-    // : 기존 데이터를 받아 온 뒤에 수정 내역이 실행 되어야 하는데, 
-    //   기존 데이터를 받기도 전에 뒷부분 작업이 실행되고 있어서 해당 부분의 조언을 받음
     async patchArticleAxios({id, title, content, image}){
 
         // 최종 데이터로 사용 할 객체
@@ -123,6 +126,7 @@ export default class ArticleServiceAxios{
 
         console.log(patchArtData);
         
+        // 데이터 통신 영역
         try{
             const res = await instance.patch(`articles/${id}`,patchArtData);
 
@@ -136,12 +140,14 @@ export default class ArticleServiceAxios{
 
     async deleteArticleAxios(id){
         
+        // 에러 처리 - id
         if(!id || typeof(id) !== "number"|| id < 1){
             // id 숫자 크기 제한은 규정을 알지 못해 1보다 작은 수는 사용 불가하도록 작성하였습니다.
             throw new Error("올바른 숫자를 입력 해 주시기 바랍니다");
             return;
         }
 
+        // 데이터 통신 영역
         try{
 
             const res = await instance.delete(`articles/${id}`);
