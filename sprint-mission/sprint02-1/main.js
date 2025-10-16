@@ -1,7 +1,3 @@
-// 참고용 코멘트
-// 모든 기능은 해당 페이지에서 끝나는 것이 아니라 html과 연동되어 사용 된다는 가정으로 하였기에,
-// 각 데이터는 변수에 담아 사용 하도록 작업하였습니다. 
-
 import Article from "./class/Article.js";
 import ArticleService from "./api/articleService.js";
 

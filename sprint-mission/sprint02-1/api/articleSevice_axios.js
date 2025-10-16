@@ -4,11 +4,6 @@ const instance = axios.create({
     baseURL: 'https://panda-market-api-crud.vercel.app/',
     timeout : 3000,
 
-    // 멘토님께 질문 드립니다 :)
-    // timeout의 기준은 어떻게 정하는게 가장 좋나요?
-    // API 문서에서 혹시 찾을 수 있나요?
-    // 시스템 성능 및 함수별 필요한 데이터 양이 다른데, 기준을 모르겠습니다!
-
 });
 
 export default class ArticleServiceAxios{
@@ -43,11 +38,6 @@ export default class ArticleServiceAxios{
                     keyword : queryParams.keyword,
                 }
             });
-
-            // 정렬 기준 query string '&orderBy=recent'를 어떻게 넣어야 할지 모르겠습니다.
-            // 'articles&orderBy=recent' 넣으니 에러가 나오고, 
-            // 그렇다고 queryParams을 모두 풀어쓰면 실행이 안되는데 뭐가 잘못 된 걸까요.
-            // 사실 GPT한테 먼저 물어봤는데, 얘도 모르겠다네요. 멘토님의 도움이 필요합니다.
 
             console.log(res.data);
             return res.data;
