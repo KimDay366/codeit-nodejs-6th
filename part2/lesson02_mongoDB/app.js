@@ -1,10 +1,11 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import { DATABASE_URL, PORT } from './constants.js';
 import Task from './task.js';
 
 const app = express();
-app.use(express.json());
+app.use(cors());
 
 await mongoose.connect(DATABASE_URL);
 // mongodb에 있는 데이터를 가지고 실행해야하므로 web DB 연결
@@ -62,7 +63,7 @@ app.patch('/tasks/:id', async (req, res) => {
 // DELETE : 데이터 삭제하기
 app.delete('/tasks/:id', async (req, res) => {
   const task = await Task.findByIdAndDelete(req.params.id);
-  if(task){
+  if (task) {
     res.sendStatus(200);
   } else {
     res.status(404).send({ message: 'Cannot find given id' });
